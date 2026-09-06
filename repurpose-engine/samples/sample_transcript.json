@@ -1,0 +1,212 @@
+{
+  "text": "So the thing nobody tells you about pricing is that lowering your price almost never fixes a demand problem. We tested this at my last company for eleven months. We ran the same landing page at twenty nine dollars, at forty nine, and at ninety nine. The ninety nine dollar page converted at one point eight percent. The twenty nine dollar page converted at two point one percent. So yes, more people bought the cheap one, but revenue per visitor was almost three times higher at ninety nine. And here is the part that surprised me. Support tickets went up on the cheap plan. The customers who paid the least asked for the most. Refund rate on the twenty nine dollar plan was nine percent. On the ninety nine dollar plan it was under two percent. So we were paying more to serve the people who paid us less. I think the reason is that price is a filter. It sorts people before they ever talk to you. When you drop your price you are not opening the door wider, you are changing who walks through it. Now let me talk about churn, because this is where most early stage founders lose the plot. Everyone obsesses over acquisition. Nobody reads the cancellation reasons. We started reading every single cancellation note out loud in the Monday meeting. Not summarized. Read out loud, word for word, by whoever shipped the feature they were complaining about. That one ritual did more for our retention than any dashboard we ever built. Within four months churn went from six percent monthly to three point four. The reason is simple. When you hear a real person say your onboarding confused them, you fix it that week. When you see churn as a number on a chart, you schedule a meeting about it in Q3. Someone asked me recently how you know when to hire your first salesperson. My answer is you do not hire a salesperson until you have personally closed thirty deals. Not ten. Thirty. Because the first ten teach you the pitch and the next twenty teach you the objections. If you hire a salesperson before that, you are asking them to invent your sales process for you. And they will invent one that works for the product they sold at their last company, not yours. I made this mistake. I hired a great rep from a big company in month five. He was good. Our product was not ready for his playbook. He left in four months and it was my fault. The other thing I would tell my younger self is to stop building features for the loudest customer. We had one enterprise account, about eighteen percent of revenue, and they asked for everything. We built a permissions system for them that took two engineers three months. Nobody else used it. Zero other accounts turned it on. That is three engineer months we could have spent on the import tool that everybody asked for quietly. Loud requests are not the same as common requests. You have to count, not listen. So now we tag every feature request with the account and we look at the count once a month. It is a boring spreadsheet. It has saved us probably a year of engineering time. Last thing. On working hours, because people ask about burnout. I do not think the answer is fewer hours. I think the answer is fewer decisions. The thing that burned me out was not working on Saturday. It was making forty small reversible decisions a day. So we wrote down defaults. Default meeting length is fifteen minutes. Default answer to a new tool is no. Default response to a customer asking for a discount is no, but here is a smaller plan. Once the defaults existed the days got quieter, and the same amount of work stopped feeling heavy.",
+  "duration": 278.78,
+  "language": "en",
+  "segments": [
+    {
+      "start": 12.0,
+      "end": 19.31,
+      "text": "So the thing nobody tells you about pricing is that lowering your price almost never fixes a demand problem."
+    },
+    {
+      "start": 19.71,
+      "end": 23.55,
+      "text": "We tested this at my last company for eleven months."
+    },
+    {
+      "start": 23.95,
+      "end": 30.49,
+      "text": "We ran the same landing page at twenty nine dollars, at forty nine, and at ninety nine."
+    },
+    {
+      "start": 30.89,
+      "end": 35.12,
+      "text": "The ninety nine dollar page converted at one point eight percent."
+    },
+    {
+      "start": 35.52,
+      "end": 39.75,
+      "text": "The twenty nine dollar page converted at two point one percent."
+    },
+    {
+      "start": 40.15,
+      "end": 47.85,
+      "text": "So yes, more people bought the cheap one, but revenue per visitor was almost three times higher at ninety nine."
+    },
+    {
+      "start": 48.25,
+      "end": 54.4,
+      "text": "And here is the part that surprised me. Support tickets went up on the cheap plan."
+    },
+    {
+      "start": 54.8,
+      "end": 58.65,
+      "text": "The customers who paid the least asked for the most."
+    },
+    {
+      "start": 59.05,
+      "end": 67.51,
+      "text": "Refund rate on the twenty nine dollar plan was nine percent. On the ninety nine dollar plan it was under two percent."
+    },
+    {
+      "start": 67.91,
+      "end": 72.91,
+      "text": "So we were paying more to serve the people who paid us less."
+    },
+    {
+      "start": 73.31,
+      "end": 80.62,
+      "text": "I think the reason is that price is a filter. It sorts people before they ever talk to you."
+    },
+    {
+      "start": 81.02,
+      "end": 88.32,
+      "text": "When you drop your price you are not opening the door wider, you are changing who walks through it."
+    },
+    {
+      "start": 88.72,
+      "end": 95.26,
+      "text": "Now let me talk about churn, because this is where most early stage founders lose the plot."
+    },
+    {
+      "start": 95.66,
+      "end": 99.12,
+      "text": "Everyone obsesses over acquisition. Nobody reads the cancellation reasons."
+    },
+    {
+      "start": 99.52,
+      "end": 104.52,
+      "text": "We started reading every single cancellation note out loud in the Monday meeting."
+    },
+    {
+      "start": 104.92,
+      "end": 111.46,
+      "text": "Not summarized. Read out loud, word for word, by whoever shipped the feature they were complaining about."
+    },
+    {
+      "start": 111.86,
+      "end": 117.25,
+      "text": "That one ritual did more for our retention than any dashboard we ever built."
+    },
+    {
+      "start": 117.65,
+      "end": 122.65,
+      "text": "Within four months churn went from six percent monthly to three point four."
+    },
+    {
+      "start": 123.05,
+      "end": 130.74,
+      "text": "The reason is simple. When you hear a real person say your onboarding confused them, you fix it that week."
+    },
+    {
+      "start": 131.14,
+      "end": 138.06,
+      "text": "When you see churn as a number on a chart, you schedule a meeting about it in Q3."
+    },
+    {
+      "start": 138.46,
+      "end": 143.46,
+      "text": "Someone asked me recently how you know when to hire your first salesperson."
+    },
+    {
+      "start": 143.86,
+      "end": 150.02,
+      "text": "My answer is you do not hire a salesperson until you have personally closed thirty deals."
+    },
+    {
+      "start": 150.42,
+      "end": 157.72,
+      "text": "Not ten. Thirty. Because the first ten teach you the pitch and the next twenty teach you the objections."
+    },
+    {
+      "start": 158.12,
+      "end": 165.05,
+      "text": "If you hire a salesperson before that, you are asking them to invent your sales process for you."
+    },
+    {
+      "start": 165.45,
+      "end": 172.37,
+      "text": "And they will invent one that works for the product they sold at their last company, not yours."
+    },
+    {
+      "start": 172.77,
+      "end": 178.92,
+      "text": "I made this mistake. I hired a great rep from a big company in month five."
+    },
+    {
+      "start": 179.32,
+      "end": 187.4,
+      "text": "He was good. Our product was not ready for his playbook. He left in four months and it was my fault."
+    },
+    {
+      "start": 187.8,
+      "end": 194.72,
+      "text": "The other thing I would tell my younger self is to stop building features for the loudest customer."
+    },
+    {
+      "start": 195.12,
+      "end": 200.89,
+      "text": "We had one enterprise account, about eighteen percent of revenue, and they asked for everything."
+    },
+    {
+      "start": 201.29,
+      "end": 206.29,
+      "text": "We built a permissions system for them that took two engineers three months."
+    },
+    {
+      "start": 206.69,
+      "end": 210.54,
+      "text": "Nobody else used it. Zero other accounts turned it on."
+    },
+    {
+      "start": 210.94,
+      "end": 217.86,
+      "text": "That is three engineer months we could have spent on the import tool that everybody asked for quietly."
+    },
+    {
+      "start": 218.26,
+      "end": 224.03,
+      "text": "Loud requests are not the same as common requests. You have to count, not listen."
+    },
+    {
+      "start": 224.43,
+      "end": 231.74,
+      "text": "So now we tag every feature request with the account and we look at the count once a month."
+    },
+    {
+      "start": 232.14,
+      "end": 237.91,
+      "text": "It is a boring spreadsheet. It has saved us probably a year of engineering time."
+    },
+    {
+      "start": 238.31,
+      "end": 242.15,
+      "text": "Last thing. On working hours, because people ask about burnout."
+    },
+    {
+      "start": 242.55,
+      "end": 248.71,
+      "text": "I do not think the answer is fewer hours. I think the answer is fewer decisions."
+    },
+    {
+      "start": 249.11,
+      "end": 256.8,
+      "text": "The thing that burned me out was not working on Saturday. It was making forty small reversible decisions a day."
+    },
+    {
+      "start": 257.2,
+      "end": 264.51,
+      "text": "So we wrote down defaults. Default meeting length is fifteen minutes. Default answer to a new tool is no."
+    },
+    {
+      "start": 264.91,
+      "end": 271.45,
+      "text": "Default response to a customer asking for a discount is no, but here is a smaller plan."
+    },
+    {
+      "start": 271.85,
+      "end": 278.38,
+      "text": "Once the defaults existed the days got quieter, and the same amount of work stopped feeling heavy."
+    }
+  ]
+}

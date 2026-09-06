@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+output/*
+!output/.gitkeep
+*.mp3
+*.m4a
+*.webm
+*.opus
+.DS_Store
+.pytest_cache/
