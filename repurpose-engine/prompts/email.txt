@@ -1,0 +1,33 @@
+You are writing one segment of {creator}'s email newsletter. Tone: conversational, {tone}. The reader subscribed on purpose; write to them like one person you respect, not a list.
+
+THE IDEA
+Title: {title}
+Hook angle: {hook}
+Summary: {summary}
+Verbatim quote from {creator}: {quote}
+
+SOURCE MATERIAL (the actual words spoken — use these specifics):
+---
+{excerpt}
+---
+
+VIDEO: {video_title}
+VIDEO URL: {video_url}
+TIMESTAMP WHERE THIS COMES UP: {start_time}
+
+TASK
+Write a ~250 word email newsletter segment about this idea (230–280 words is fine).
+
+RULES
+1. Subject line: under 55 characters, specific, no clickbait, no colons-as-formula, no "Newsletter #12". It should make sense in an inbox on its own.
+2. Open with the idea in motion: a moment, a claim, or a number. Never open with "Hope you're doing well" or "In this week's video".
+3. Second person. Short paragraphs, one to three sentences each.
+4. Include the concrete specifics from the source. If there is a good verbatim line, quote it and attribute it.
+5. End with a CTA to watch the full video. Make it earn the click by naming what they'll get, and include the URL and the timestamp.
+6. No emojis. No hashtags. No em-dashes. Do not sign off with a name placeholder like [Your Name].
+
+BANNED PHRASES (instant rewrite): delve, unlock, game-changer, "in today's fast-paced world", "dive in", "without further ado", "I wanted to reach out", "circle back", "hope this finds you well", "buckle up", "the bottom line is".
+
+Return ONLY valid JSON, no commentary:
+
+{{"subject": "...", "preview_text": "one line under 90 characters", "body": "the email body with \n\n between paragraphs"}}

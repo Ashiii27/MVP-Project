@@ -1,0 +1,18 @@
+# Task 1.7 test set — five different formats.
+# Format: URL | creator name (optional) | tone (optional)
+# Replace these with videos you actually know, so you can judge the output.
+
+# 1. Long-form podcast interview
+https://www.youtube.com/watch?v=REPLACE_ME | Guest Name | authoritative
+
+# 2. Solo talking-head essay
+https://www.youtube.com/watch?v=REPLACE_ME | Creator Name | casual
+
+# 3. Tutorial / how-to
+https://www.youtube.com/watch?v=REPLACE_ME | Creator Name | casual
+
+# 4. Conference talk
+https://www.youtube.com/watch?v=REPLACE_ME | Speaker Name | authoritative
+
+# 5. Vlog / informal
+https://www.youtube.com/watch?v=REPLACE_ME | Creator Name | irreverent
