@@ -44,10 +44,10 @@ class Settings:
     llm_provider: str = field(default_factory=lambda: os.getenv("LLM_PROVIDER", "auto").lower())
 
     groq_model: str = field(
-        default_factory=lambda: os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+        default_factory=lambda: os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
     )
     gemini_model: str = field(
-        default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+        default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
     )
     whisper_model: str = field(
         default_factory=lambda: os.getenv("WHISPER_MODEL", "whisper-large-v3")

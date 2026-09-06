@@ -49,7 +49,43 @@ def parse_args(argv=None) -> argparse.Namespace:
     p.add_argument("--keep-audio", action="store_true", help="don't delete the downloaded audio")
     p.add_argument("--quiet", action="store_true", help="less logging")
     p.add_argument("--mock", action="store_true", help="run offline with a fake LLM (no API key)")
+    p.add_argument("--list-models", action="store_true",
+                   help="show which models your API key can actually reach, then exit")
     return p.parse_args(argv)
+
+
+def list_models(provider: str | None) -> int:
+    """Ask the provider what this key can use. Answers 'which model do I put in .env?'."""
+    import llm
+
+    for name in ([provider] if provider else ["groq", "gemini"]):
+        try:
+            client = llm.LLMClient(provider=name)
+        except Exception as exc:  # noqa: BLE001 - just means no key for that provider
+            log(f"\n{name}: {exc}")
+            continue
+        try:
+            models = client.available_models()
+        except Exception as exc:  # noqa: BLE001
+            err(f"{name}: could not list models ({exc})")
+            continue
+
+        chat = [m for m in models if not any(k in m for k in ("whisper", "guard", "orpheus", "embedding", "tts"))]
+        audio = [m for m in models if "whisper" in m]
+        print(f"\n{name.upper()} — {len(models)} models available to your key")
+        print("  text / chat:")
+        for m in chat:
+            star = "  <- current default" if m == client.model else ""
+            print(f"    {m}{star}")
+        if audio:
+            print("  transcription:")
+            for m in audio:
+                print(f"    {m}")
+        recommended = next((m for m in client.fallbacks if m in models), chat[0] if chat else None)
+        if recommended:
+            key = "GROQ_MODEL" if name == "groq" else "GEMINI_MODEL"
+            print(f"\n  Recommended: put `{key}={recommended}` in your .env")
+    return 0
 
 
 def _load_transcript_file(path: Path):
@@ -69,6 +105,9 @@ class _Meta:
 
 
 def run(args: argparse.Namespace) -> int:
+    if args.list_models:
+        return list_models(args.provider)
+
     if args.quiet:
         SETTINGS.verbose = False
     SETTINGS.top_n = max(1, args.top_n)

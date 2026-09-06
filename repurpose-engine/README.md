@@ -32,6 +32,12 @@ Get a free Groq key at <https://console.groq.com/keys> and put it in `.env`:
 GROQ_API_KEY=gsk_...
 ```
 
+Check what your key can actually reach (model availability changes — see §6):
+
+```bash
+python main.py --list-models
+```
+
 **Install ffmpeg too** (strongly recommended — it shrinks a 2-hour podcast from ~200 MB to ~15 MB):
 
 ```bash
@@ -98,7 +104,7 @@ output/how-pricing-works-abc123/
 | `batch.py` | Runs a list of videos, then scores them all. |
 | `prompts/*.txt` | The actual prompts. **This is where output quality lives.** |
 | `mock_llm.py` | Offline fake LLM for testing the plumbing without API calls. |
-| `tests/` | 22 offline tests (`python tests/test_pipeline.py`). |
+| `tests/` | 27 offline tests (`python tests/test_pipeline.py`). |
 
 ## 4. Task 1.7 — testing 5 videos without kidding yourself
 
@@ -145,9 +151,10 @@ Run `python evaluate.py` any time to re-score what's in `output/`.
 | `GROQ_API_KEY` | — | required (Whisper + Llama) |
 | `GEMINI_API_KEY` | — | optional alternative for the writing steps |
 | `LLM_PROVIDER` | `auto` | `auto` \| `groq` \| `gemini` |
-| `GROQ_MODEL` | `llama-3.3-70b-versatile` | |
-| `GEMINI_MODEL` | `gemini-2.0-flash` | |
+| `GROQ_MODEL` | `openai/gpt-oss-120b` | free tier; Llama chat models are enterprise-only now |
+| `GEMINI_MODEL` | `gemini-2.5-flash` | |
 | `WHISPER_MODEL` | `whisper-large-v3` | `whisper-large-v3-turbo` is faster, slightly worse |
+| `GROQ_REASONING_EFFORT` | `low` | gpt-oss models are reasoning models; `low` keeps them writing instead of thinking |
 | `CREATOR_NAME` | — | whose voice to write in |
 | `TONE` | `casual` | `casual` \| `authoritative` \| `irreverent` \| `warm` |
 | `TOP_N` | `3` | ideas to format |
@@ -156,7 +163,42 @@ Run `python evaluate.py` any time to re-score what's in `output/`.
 | `LLM_MIN_INTERVAL` | `2.1` | seconds between LLM calls (30 req/min free tier) |
 | `KEEP_AUDIO` | `false` | keep the mp3 after transcription |
 
-## 6. Costs and limits
+## 6. Which model should I use?
+
+Groq's catalogue moves. In 2026 the Llama chat models (`llama-3.3-70b-versatile`, `llama-3.1-8b-instant`)
+became **enterprise-only**, so a free-tier key calling them gets `404 model_not_found`. Current free-tier
+text models:
+
+| Model | Speed | Good for |
+| --- | --- | --- |
+| `openai/gpt-oss-120b` **(default)** | ~500 t/s | Best quality of the free pair. Use it for chunking and formatting. |
+| `openai/gpt-oss-20b` | ~1000 t/s | Faster and cheaper; noticeably blander prose. Fine for the chunking pass. |
+| `groq/compound-mini` | ~450 t/s | Last-resort system model. |
+| `whisper-large-v3` | — | Transcription. Unchanged, still free-tier. |
+
+Or switch the writing steps to Gemini, which has a separate free quota:
+
+```bash
+python main.py "https://youtu.be/xyz" --provider gemini      # gemini-2.5-flash
+```
+
+You don't have to babysit this. If the configured model returns a 404 the client **fails fast on that
+model** (no pointless retries), walks its fallback list, tells you what it switched to, and remembers
+the dead model for the rest of the run:
+
+```
+! 'llama-3.3-70b-versatile' is not available on your key — trying the next model
+! switched to openai/gpt-oss-120b (previous model unavailable on this key)
+```
+
+`--model X` pins a model and disables that wandering. `python main.py --list-models` prints exactly
+what your key can reach, for both providers, and recommends what to put in `.env`.
+
+A tip for quality: mixing providers is cheap insurance against rate limits and against one model's
+house style. `GROQ_MODEL=openai/gpt-oss-120b` for chunking and `--provider gemini` for a second
+opinion on the writing is a reasonable A/B when you're tuning prompts.
+
+## 7. Costs and limits
 
 | Step | Calls per video | Free-tier reality |
 | --- | --- | --- |
@@ -166,23 +208,26 @@ Run `python evaluate.py` any time to re-score what's in `output/`.
 
 A 60-minute podcast is roughly 12-15 LLM calls and about 2-4 minutes wall clock, mostly transcription. `llm.py` spaces calls ~2.1s apart so you don't hit the rate limit.
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Fix |
 | --- | --- |
 | `Sign in to confirm you're not a bot` | yt-dlp needs cookies: `yt-dlp --cookies-from-browser chrome`, or update yt-dlp (`pip install -U yt-dlp`). |
 | `413` / file too large | Install ffmpeg. The 25 MB cap is Groq's. |
+| `404 ... model_not_found` | That model isn't on your key (Groq made the Llama models enterprise-only). The client auto-falls back; to silence it, run `python main.py --list-models` and set `GROQ_MODEL` in `.env`. |
+| `401 invalid api key` | Fails immediately with a link to regenerate the key. Check for a stray quote or space in `.env`. |
 | `rate_limit_exceeded` | Raise `LLM_MIN_INTERVAL` to 3.0. Retries with backoff already happen automatically. |
+| Output is short or empty on gpt-oss | It spent the budget on reasoning. Keep `GROQ_REASONING_EFFORT=low`. |
 | Model returns prose instead of JSON | Already handled (`extract_json` strips fences and repairs trailing commas). If it persists, drop to `--provider gemini`. |
 | Ideas have wrong timestamps | The transcript needs segments. Check `transcript.json` has a non-empty `segments` array. |
 | Output sounds robotic | See "How to iterate on prompts" above. That's the make-or-break work, not the code. |
 
-## 8. Tests
+## 9. Tests
 
 ```bash
-python tests/test_pipeline.py          # 22 tests, no network, no API key
+python tests/test_pipeline.py          # 27 tests, no network, no API key
 ```
 
 Covers timestamp parsing, JSON salvage from messy LLM output, the MP3 frame splitter (offsets and
-frame conservation), idea coercion/dedupe, transcript excerpting, all three validators, and a full
-end-to-end run against the mock LLM.
+frame conservation), idea coercion/dedupe, transcript excerpting, all three validators, model
+fallback on 404 / auth / rate-limit errors, and a full end-to-end run against the mock LLM.
